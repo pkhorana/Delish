@@ -236,7 +236,7 @@ if __name__ == "__main__":
 
         if len(soup.find_all("section", class_ = "error-page")) == 0:
             try:
-                rec = retry_protocol_scraper2(soup, address, tag, 0, 10)
+                rec = retry_protocol_scraper2(soup, address, tag, 0, 5)
                 recipe_list.append(rec)
                 count = count + 1
                 print str(count) + "   " + str(index)
