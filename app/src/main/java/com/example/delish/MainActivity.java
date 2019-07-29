@@ -7,7 +7,15 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 
+
+import android.util.Base64;
+import java.io.ByteArrayOutputStream;
+import android.os.AsyncTask;
+
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.delish.Models.CloudVision;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,11 +47,43 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            processImage(imageBitmap);
+            String base64 = processImage(imageBitmap);
+            new MyTask().execute(base64);
+//            try {
+//                CloudVision.webDetectionResponse(base64);
+//                System.out.println("Works!!");
+//            } catch (Exception e) {
+//                System.out.println("Failllllll");
+//            }
+
         }
     }
 
-    public void processImage(Bitmap imageBitMap) {
+    public String processImage(Bitmap bitmap) {
         // code that in
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+        String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        return encoded;
+
+    }
+
+
+    private class MyTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                String resp = CloudVision.webDetectionResponse(params[0]);
+                System.out.println("Works!!");
+                return resp;
+
+            } catch (Exception e) {
+                System.out.println("Failllllll");
+                return null;
+            }
+
+        }
     }
 }
