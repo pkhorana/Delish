@@ -184,7 +184,7 @@ def flush_batch():
     ingredients_body = ""
     ingredients_index = 0
 
-    print "batch done"
+    print"batch done"
 
 
 def retry_protocol_scraper(url, tag, count, max_count):
