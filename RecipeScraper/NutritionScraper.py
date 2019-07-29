@@ -209,6 +209,7 @@ def retry_protocol_scraper2(soup, url, tag, count, max_count):
         else:
             raise ValueError("Could not resolve error")
 
+"""
 if __name__ == "__main__":
     start = timer()
 
@@ -285,4 +286,4 @@ if __name__ == "__main__":
 
 
     f.close()
-"""
+
