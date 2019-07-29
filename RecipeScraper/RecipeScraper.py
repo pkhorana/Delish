@@ -3,8 +3,6 @@ from bs4 import BeautifulSoup
 import sys
 import json
 from os import path
-from ingredient_parser.en import parse
-import unirest
 import time
 from timeit import default_timer as timer
 
@@ -169,8 +167,7 @@ def flush_batch():
     CookaloID = f.readline().strip()
     f.close()
     
-    
-    response = unirest.post("https://akia-ai-powered-recipe-parsing-v1.p.rapidapi.com/recipe-mashape",
+    response = requests.post("https://akia-ai-powered-recipe-parsing-v1.p.rapidapi.com/recipe-mashape",
                             headers={
                             "X-RapidAPI-Host": "akia-ai-powered-recipe-parsing-v1.p.rapidapi.com",
                             "X-RapidAPI-Key": CookaloID,
@@ -178,7 +175,7 @@ def flush_batch():
                             },
                             params=(ingredients_body)
                             )
-                            
+    
     f = open("ResponseBody.txt", "w")
     f.write(json.dumps(response.body))
     f.close()
