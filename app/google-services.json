@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1091726768619",
+    "firebase_url": "https://delish-9c7d4.firebaseio.com",
+    "project_id": "delish-9c7d4",
+    "storage_bucket": "delish-9c7d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091726768619:android:7c7588085a8006f4",
+        "android_client_info": {
+          "package_name": "com.example.delish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091726768619-4fpdtfcjjoggt1khhs7833puq0q5i4jv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.delish",
+            "certificate_hash": "e67536594d557ec6251388d8f2852e8387a0b92e"
+          }
+        },
+        {
+          "client_id": "1091726768619-ijatdqmues4pl53jb10lvs0c2mllbsgc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHBq7TfIb5nBnpIrxuB30oCAIArXBuuEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091726768619-ijatdqmues4pl53jb10lvs0c2mllbsgc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
