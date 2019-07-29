@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         takeAPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+//                dispatchTakePictureIntent();
             }
         });
     }
