@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.delish">
 
+    <meta-data
+        android:name="com.google.android.gms.wallet.api.enabled"
+        android:value="true"/>
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -12,7 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SavedRec"></activity>
+        <activity
+            android:name=".PaymentsTest"
+            android:label="@string/title_activity_payments_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".SavedRec" />
         <activity android:name=".Cart" />
         <activity android:name=".Insights" />
         <activity android:name=".MainActivity">

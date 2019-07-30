@@ -1,37 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:padding="@dimen/padding_medium"
+    <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:orientation="vertical">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="@dimen/padding_small"
-        app:cardCornerRadius="10dp"
-        app:strokeColor="@color/colorPrimary"
-        app:strokeWidth="3dp"></com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="@dimen/padding_small"
-        app:cardCornerRadius="10dp"
-        app:strokeColor="@color/colorPrimary"
-        app:strokeWidth="3dp"></com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="@dimen/padding_small"
-        app:cardCornerRadius="10dp"
-        app:strokeColor="@color/colorPrimary"
-        app:strokeWidth="3dp"></com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item Name"
+            android:textSize="24dp"
+            android:padding="@dimen/padding_large"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/padding_small"
+            android:layout_height="2dp"
+            android:background="#CFCECE" />
+
+        <TextView
+            android:id="@+id/nutrition_insights"
+            android:text="Nutrition Insights"
+            style="@style/h2" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/nutrition_insight_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_extra_large"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_marginRight="@dimen/padding_large"
+            android:layout_marginBottom="@dimen/padding_medium"></com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/nutrition_insight_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_extra_large"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_marginRight="@dimen/padding_large"
+            android:layout_marginBottom="@dimen/padding_medium"></com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/recipes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recipes"
+            style="@style/h2"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_extra_large"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_marginRight="@dimen/padding_large"
+            android:layout_marginBottom="@dimen/padding_medium"></com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_extra_large"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_marginRight="@dimen/padding_large"
+            android:layout_marginBottom="@dimen/padding_medium"></com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_extra_large"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_marginRight="@dimen/padding_large"
+            android:layout_marginBottom="@dimen/padding_medium"></com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+
+</ScrollView>
