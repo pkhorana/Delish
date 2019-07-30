@@ -1,8 +1,10 @@
-package com.example.delish;
+package com.example.delish.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.delish.R;
 
 public class Insights extends AppCompatActivity {
 

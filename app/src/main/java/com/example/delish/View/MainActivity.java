@@ -1,21 +1,20 @@
-package com.example.delish;
+package com.example.delish.View;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.util.Base64;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import com.example.delish.R;
+import com.example.delish.ViewModel.ShowDelishCamera;
 import com.example.delish.Models.RecipeAlgo;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.example.delish.Models.CloudVision;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // UNCOMMENT THE NEXT LINE TO MAKE THE API CALL
                 // captureImage(v);
-                BottomSheetDialogDetails bottomSheetDialogDetails = new BottomSheetDialogDetails();
+                Cart.BottomSheetDialogDetails bottomSheetDialogDetails = new Cart.BottomSheetDialogDetails();
                 bottomSheetDialogDetails.show(getSupportFragmentManager(), bottomSheetDialogDetails.getTag());
             }
         });

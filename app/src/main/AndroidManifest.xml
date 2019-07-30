@@ -12,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SavedRec"></activity>
-        <activity android:name=".Cart" />
-        <activity android:name=".Insights" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".View.SavedRec"></activity>
+        <activity android:name=".View.Cart" />
+        <activity android:name=".View.Insights" />
+        <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
