@@ -28,12 +28,6 @@
         android:text="Workout"
         android:textColor="@android:color/black" />
 
-    <TextView
-        android:id="@+id/text_cook_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="Nutrition Facts"
-        android:textColor="@android:color/black" />
+
 
 </LinearLayout>
