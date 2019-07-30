@@ -1,6 +1,7 @@
 package com.example.delish;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getSupportActionBar().setTitle("Delish by NCR");
+        //getSupportActionBar().set(Color.parseColor("#80000000"));
         takePictureButton = findViewById(R.id.take_picture_button);
         frameLayout = findViewById(R.id.camera_layout);
 
@@ -39,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
         showDelishCamera = new ShowDelishCamera(this, camera);
         frameLayout.addView(showDelishCamera);
+
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePictureButton.setEnabled(false);
+                camera.autoFocus(autoFocusCallback);
+            }
+        });
 
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    Camera.AutoFocusCallback autoFocusCallback = new Camera.AutoFocusCallback() {
+        @Override
+        public void onAutoFocus(boolean arg0, Camera arg1) {
+            takePictureButton.setEnabled(true);
+        }
+    };
 
     Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
         @Override
