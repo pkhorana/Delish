@@ -71,6 +71,7 @@
                 <TextView
                     android:id="@+id/text_prep_time"
                     android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:maxLines="1"
                     android:layout_marginTop="24dp"
                     android:text="Prep Time:" />
