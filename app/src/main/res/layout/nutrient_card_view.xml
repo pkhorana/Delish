@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.MaterialComponents.CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+    android:layout_marginTop="@dimen/mtrl_card_spacing"
+    android:layout_marginRight="@dimen/mtrl_card_spacing"
+    android:minHeight="200dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="189dp"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            android:text="Nutrition" />
+
+
+        <TextView
+            android:id="@+id/text_insight1"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_marginTop="24dp"
+            android:maxLines="1"
+            android:text="This is a sentence that is supposed to give us in"
+            android:textColor="@android:color/black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/text_insight2"
+            android:layout_width="wrap_content"
+            android:layout_height="69dp"
+            android:layout_marginTop="12dp"
+            android:maxLines="1"
+            android:text="This is a sentence that is supposed to give us in"
+            android:textColor="@android:color/black"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

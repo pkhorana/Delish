@@ -1,4 +1,4 @@
-package com.example.delish;
+package com.example.delish.ViewModel;
 
 import android.content.Context;
 import android.content.res.Configuration;
