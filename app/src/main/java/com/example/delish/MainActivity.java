@@ -1,49 +1,56 @@
 package com.example.delish;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
+import android.hardware.Camera;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
+public class MainActivity extends AppCompatActivity {
+    private Button takePictureButton;
+    Camera camera;
+    FrameLayout frameLayout;
+    ShowDelishCamera showDelishCamera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button takeAPicture = findViewById(R.id.take_picture_button);
-        takeAPicture.setOnClickListener(new View.OnClickListener() {
+        takePictureButton = findViewById(R.id.take_picture_button);
+        frameLayout = findViewById(R.id.camera_layout);
+
+        camera = Camera.open();
+
+        showDelishCamera = new ShowDelishCamera(this, camera);
+        frameLayout.addView(showDelishCamera);
+
+        takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                dispatchTakePictureIntent();
+                new MaterialAlertDialogBuilder(v.getContext())
+                        .setTitle("Title")
+                        .setMessage("Message")
+                        .setPositiveButton("Ok", null)
+                        .show();
             }
         });
     }
 
-    private void dispatchTakePictureIntent() {
-        Intent takeAPicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takeAPicture.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takeAPicture, REQUEST_IMAGE_CAPTURE);
-        }
-    }
+    Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            processImage(imageBitmap);
         }
-    }
+    };
 
-    public void processImage(Bitmap imageBitMap) {
-        // code that in
+    public void captureImage(View v) {
+        if (camera != null) {
+            camera.takePicture(null, null, mPictureCallback);
+        }
     }
 }
