@@ -1,10 +1,8 @@
-import urllib2
+import requests
 from bs4 import BeautifulSoup
 import sys
 import json
 from os import path
-from ingredient_parser.en import parse
-import unirest
 import time
 from timeit import default_timer as timer
 
@@ -118,9 +116,12 @@ def get_basic_info(soup):
 def recipe_scraper(url, tags):
     target_URL = url
     
-    req = urllib2.Request(target_URL)
-    response = urllib2.urlopen(req)
-    site_HTML = response.read()
+    req = requests.get(target_URL)
+    site_HTML = req.text
+    
+                       #urllib2.Request(target_URL)
+                       #response = urllib2.urlopen(req)
+                       #site_HTML = response.read()
     
     soup = BeautifulSoup(site_HTML, 'html.parser')
 
@@ -138,12 +139,13 @@ def recipe_scraper2(soup, url, tags):
     json_dictionary["tags"] = tags
     json_dictionary["ingredients"] = get_ingredients(soup)
     
+    print(json_dictionary["name"])
     return json_dictionary
     
     
 def save_to_file(json_dictionary):
     index = 0
-    while path.exists("demoRecipe" + str(index) + ".txt"):
+    while path.exists("Recipes/demoRecipe" + str(index) + ".txt"):
         index = index + 1
 
     f = open("Recipes/demoRecipe" + str(index) + ".txt", "w")
@@ -165,8 +167,7 @@ def flush_batch():
     CookaloID = f.readline().strip()
     f.close()
     
-    
-    response = unirest.post("https://akia-ai-powered-recipe-parsing-v1.p.rapidapi.com/recipe-mashape",
+    response = requests.post("https://akia-ai-powered-recipe-parsing-v1.p.rapidapi.com/recipe-mashape",
                             headers={
                             "X-RapidAPI-Host": "akia-ai-powered-recipe-parsing-v1.p.rapidapi.com",
                             "X-RapidAPI-Key": CookaloID,
@@ -174,7 +175,11 @@ def flush_batch():
                             },
                             params=(ingredients_body)
                             )
-
+    
+    f = open("ResponseBody.txt", "w")
+    f.write(json.dumps(response.body))
+    f.close()
+    
     response_list = json.loads(json.dumps(response.body))
     match_responses(response_list, recipe_list)
 
@@ -184,7 +189,7 @@ def flush_batch():
     ingredients_body = ""
     ingredients_index = 0
 
-    print "batch done"
+    print("batch done")
 
 
 def retry_protocol_scraper(url, tag, count, max_count):
@@ -192,7 +197,7 @@ def retry_protocol_scraper(url, tag, count, max_count):
         return recipe_scraper(url, tag)
     except AttributeError or ValueError:
         if count < max_count:
-            print str(count + 1)
+            print(str(count + 1))
             time.sleep(5)
             return retry_protocol_scraper(url, tag, count + 1, max_count)
         else:
@@ -203,12 +208,13 @@ def retry_protocol_scraper2(soup, url, tag, count, max_count):
         return recipe_scraper2(soup, url, tag)
     except AttributeError or ValueError:
         if count < max_count:
-            print str(count + 1)
+            print(str(count + 1))
             time.sleep(5)
             return retry_protocol_scraper(url, tag, count + 1, max_count)
         else:
             raise ValueError("Could not resolve error")
 
+"""
 if __name__ == "__main__":
     start = timer()
 
@@ -219,7 +225,7 @@ if __name__ == "__main__":
     
     address_base = "https://www.allrecipes.com/recipe/"
     
-    index = 11500
+    index = 15000
     
     while index < 1000000:
         address = address_base + str(index) + "/"
@@ -236,7 +242,7 @@ if __name__ == "__main__":
 
         if len(soup.find_all("section", class_ = "error-page")) == 0:
             try:
-                rec = retry_protocol_scraper2(soup, address, tag, 0, 10)
+                rec = retry_protocol_scraper2(soup, address, tag, 0, 5)
                 recipe_list.append(rec)
                 count = count + 1
                 print str(count) + "   " + str(index)
@@ -246,17 +252,20 @@ if __name__ == "__main__":
         index = index + 1
         
         if count == 2500:
-            flush_batch()
             break
+        
+
 
     f = open("out_json.txt", "w")
     for rec in recipe_list:
         f.write(json.dumps(rec))
     f.close()
-
+    
     f = open("out_body.txt", "w")
     f.write(ingredients_body)
     f.close()
+    
+    flush_batch()
 
     end = timer()
     print(end - start)
@@ -280,9 +289,8 @@ if __name__ == "__main__":
             recipe_list.append(retry_protocol_scraper(line, tag, 0, 10))
             line = f.readline()
             count = count + 1
-
+    f.close()
     flush_batch()
 
     
-    f.close()
-"""
+
