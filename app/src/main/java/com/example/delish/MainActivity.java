@@ -8,6 +8,8 @@ import android.widget.FrameLayout;
 import android.util.Base64;
 import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.example.delish.Models.CloudVision;
 
@@ -34,12 +36,16 @@ public class MainActivity extends AppCompatActivity {
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureImage(v);
-                new MaterialAlertDialogBuilder(v.getContext())
-                        .setTitle("Title")
-                        .setMessage("Message")
-                        .setPositiveButton("Ok", null)
-                        .show();
+//                captureImage(v); // UNCOMMENT THIS LINE
+//                new MaterialAlertDialogBuilder(v.getContext())
+//                        .setTitle("Title")
+//                        .setMessage("Message")
+//                        .setPositiveButton("Ok", null)
+//                        .show();
+
+                new BottomSheetDialog(v.getContext())
+                    .setTitle("Title");
+
             }
         });
     }
