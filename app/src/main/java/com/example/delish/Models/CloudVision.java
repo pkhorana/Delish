@@ -64,7 +64,7 @@ public class CloudVision {
 
         JSONObject first = ((JSONArray) arr2).getJSONObject(0);
         String tag = first.getString("description").toLowerCase();
-
+        RecipeAlgo.setItem(tag);
         return tag;
     }
 
