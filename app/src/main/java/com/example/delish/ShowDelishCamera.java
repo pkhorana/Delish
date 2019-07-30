@@ -46,11 +46,11 @@ public class ShowDelishCamera extends SurfaceView implements SurfaceHolder.Callb
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+        // not needed
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-
+        // not needed
     }
 }

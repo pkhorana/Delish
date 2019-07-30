@@ -5,14 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-
-
 import android.util.Base64;
 import android.os.AsyncTask;
-
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.example.delish.Models.CloudVision;
 
@@ -76,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         return encoded;
 
     }
-
 
     private class MyTask extends AsyncTask<String, Void, String> {
 
