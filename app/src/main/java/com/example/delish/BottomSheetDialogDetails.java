@@ -1,4 +1,6 @@
 package com.example.delish;
 
-public class BottomSheetDialogDetails {
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+public class BottomSheetDialogDetails extends BottomSheetDialog {
 }
