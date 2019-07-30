@@ -1,4 +1,7 @@
 package com.example.delish.Models;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;
@@ -52,7 +55,17 @@ public class CloudVision {
             System.out.println(line);  //  alternatively, print the line of response
         }
         httpResponseScanner.close();
-        return resp;
+
+        JSONObject json = new JSONObject(resp);
+        JSONArray arr = json.getJSONArray("responses");
+        JSONObject obj = arr.getJSONObject(0);
+        JSONObject obj2 = obj.getJSONObject("webDetection");
+        JSONArray arr2 = obj2.getJSONArray("webEntities");
+
+        JSONObject first = ((JSONArray) arr2).getJSONObject(0);
+        String tag = first.getString("description").toLowerCase();
+
+        return tag;
     }
 
 }
