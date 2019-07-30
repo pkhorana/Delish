@@ -8,10 +8,8 @@ import unirest
 import time
 from timeit import default_timer as timer
 
-out = {}
-final = '{"Recipe" : {'
+out = {"Recipes" : {}}
 
-#'{ "Recipe" : ['
 for i in range(50):
     f = open("Recipes/demoRecipe" + str(i) + ".txt", "r")
     json_val = f.readline()
@@ -19,21 +17,19 @@ for i in range(50):
 
     json_loaded = json.loads(json_val)
     
-    if json_loaded["tags"] in out:
-        out[json_loaded["tags"]] = out[json_loaded["tags"]] + json_val + ","
+    if json_loaded["tags"] in out["Recipes"]:
+        out["Recipes"][json_loaded["tags"]].append(json_loaded)
     else:
-        out[json_loaded["tags"]] = '"' + json_loaded["tags"] + '" : ['
-
-for tag in out:
-    final = final + out[tag][:-1] + "],"
-
-final = final[:-1] + "}}"
+        out["Recipes"][json_loaded["tags"]] = [json_loaded]
+    
 
 
 
-out = final
 
-f = open("Recipes/demoRecipeCompiles.txt", "w")
+
+out = json.dumps(out)
+
+f = open("Recipes/demoRecipeCompiles.json", "w")
 f.write(out)
 f.close()
 
