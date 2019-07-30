@@ -112,6 +112,8 @@ def get_basic_info(soup):
 
     return name, rating
 
+def get_image_URL(soup):
+    return soup.find("img", class_ = "rec-photo")['src']
 
 def recipe_scraper(url, tags):
     target_URL = url
@@ -125,7 +127,7 @@ def recipe_scraper(url, tags):
     
     soup = BeautifulSoup(site_HTML, 'html.parser')
 
-    recipe_scraper2(soup, url, tags)
+    return recipe_scraper2(soup, url, tags)
 
 def recipe_scraper2(soup, url, tags):
     
@@ -138,8 +140,8 @@ def recipe_scraper2(soup, url, tags):
     json_dictionary["nurtitional_content"] = nutritional_content(soup)
     json_dictionary["tags"] = tags
     json_dictionary["ingredients"] = get_ingredients(soup)
-    
-    print(json_dictionary["name"])
+    json_dictionary["image_URL"] = get_image_URL(soup)
+
     return json_dictionary
     
     
@@ -160,6 +162,7 @@ def match_responses(response_list, recipe_list):
 
 
 def flush_batch():
+    
     global ingredients_body
     global ingredients_index
     
@@ -167,22 +170,25 @@ def flush_batch():
     CookaloID = f.readline().strip()
     f.close()
     
+    CookaloID = ""
+    
     response = requests.post("https://akia-ai-powered-recipe-parsing-v1.p.rapidapi.com/recipe-mashape",
                             headers={
                             "X-RapidAPI-Host": "akia-ai-powered-recipe-parsing-v1.p.rapidapi.com",
                             "X-RapidAPI-Key": CookaloID,
-                            "Content-Type": "text/plain"
+                            "Content-Type": "text/plain",
+                            "Accept": "text/plain"
                             },
                             params=(ingredients_body)
                             )
-    
     f = open("ResponseBody.txt", "w")
-    f.write(json.dumps(response.body))
+    print response.text
+    f.write(json.dumps(response.text))
     f.close()
     
-    response_list = json.loads(json.dumps(response.body))
+    response_list = json.loads(json.dumps(response.text))
     match_responses(response_list, recipe_list)
-
+    
     for recipe in recipe_list:
         save_to_file(recipe)
         
@@ -273,6 +279,7 @@ if __name__ == "__main__":
 
 """
 if __name__ == "__main__":
+    batch_size = 10
     count = 0
     f = open("input.txt", "r")
     line = f.readline()
@@ -282,13 +289,18 @@ if __name__ == "__main__":
     
     while line:
         if line[0] == '+':
-            tag = line[1:-1]
+            tag = line[1:-1].strip()
             line = f.readline()
         else:
-            
-            recipe_list.append(retry_protocol_scraper(line, tag, 0, 10))
+            recipe_list.append(retry_protocol_scraper(line, tag, 0, 100))
             line = f.readline()
             count = count + 1
+            print count
+
+            if count % batch_size == 0:
+                flush_batch()
+        
+
     f.close()
     flush_batch()
 
