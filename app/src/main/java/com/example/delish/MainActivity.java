@@ -16,10 +16,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.example.delish.Models.RecipeAlgo;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.example.delish.Models.CloudVision;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button takePictureButton;
+    private FloatingActionButton takePictureButton;
     Camera camera;
     FrameLayout frameLayout;
     ShowDelishCamera showDelishCamera;
@@ -42,16 +43,10 @@ public class MainActivity extends AppCompatActivity {
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                captureImage(v); // UNCOMMENT THIS LINE
-//                new MaterialAlertDialogBuilder(v.getContext())
-//                        .setTitle("Title")
-//                        .setMessage("Message")
-//                        .setPositiveButton("Ok", null)
-//                        .show();
-
-                new BottomSheetDialog(v.getContext())
-                    .setTitle("Title");
-
+                // UNCOMMENT THE NEXT LINE TO MAKE THE API CALL
+                // captureImage(v);
+                BottomSheetDialogDetails bottomSheetDialogDetails = new BottomSheetDialogDetails();
+                bottomSheetDialogDetails.show(getSupportFragmentManager(), bottomSheetDialogDetails.getTag());
             }
         });
     }
