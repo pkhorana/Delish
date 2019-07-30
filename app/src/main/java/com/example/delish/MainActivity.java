@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
         showDelishCamera = new ShowDelishCamera(this, camera);
         frameLayout.addView(showDelishCamera);
 
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePictureButton.setEnabled(false);
+                camera.autoFocus(autoFocusCallback);
+            }
+        });
+
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    Camera.AutoFocusCallback autoFocusCallback = new Camera.AutoFocusCallback() {
+        @Override
+        public void onAutoFocus(boolean arg0, Camera arg1) {
+            takePictureButton.setEnabled(true);
+        }
+    };
 
     Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
         @Override
