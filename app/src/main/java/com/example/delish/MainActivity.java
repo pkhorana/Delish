@@ -8,6 +8,8 @@ import android.widget.FrameLayout;
 import android.util.Base64;
 import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.delish.Models.RecipeAlgo;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.example.delish.Models.CloudVision;
 
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         public void onPictureTaken(byte[] data, Camera camera) {
             String base64 = processImage(data);
             new MyTask().execute(base64);
+            RecipeAlgo.queryforRecipes();
+
 //            try {
 //                CloudVision.webDetectionResponse(base64);
 //                System.out.println("Works!!");

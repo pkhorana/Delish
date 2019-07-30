@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,11 +19,11 @@ public class RecipeAlgo {
 
     public static String cameraItem;
 
-    public Map<String,DataSnapshot> recipeMatches;
+    public static Map<String,DataSnapshot> recipeMatches = new HashMap<String,DataSnapshot>();
 
 
-    public void queryforRecipes() {
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Recipe/");
+    public static void queryforRecipes() {
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Recipe");
         List<String> ingredients = new ArrayList<>();
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -31,12 +32,11 @@ public class RecipeAlgo {
                     String cuisine = cuisines.getKey();
                     for(DataSnapshot recipes : cuisines.getChildren()){
                         for(DataSnapshot ingredients : recipes.child("ingredients").getChildren()){
-                            for(DataSnapshot finaling : ingredients.getChildren()){
-                                String ingredient = finaling.child("name").getValue().toString();
-                                if(ingredient.contains(cameraItem)){
-                                    recipeMatches.put(cuisine,recipes);
-                                }
+                            String ingredient = ((String)ingredients.child("name").getValue()).toLowerCase();
+                            if(ingredient.contains(cameraItem)){
+                                recipeMatches.put(cuisine,recipes);
                             }
+
                         }
                     }
                 }
