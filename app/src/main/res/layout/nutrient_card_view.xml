@@ -24,10 +24,10 @@
             android:id="@+id/text_insight1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="This is a sentence that is supposed to give us in"
+            android:text="This is a sentence that is supposed to give us in "
             android:textColor="@android:color/black"
-            android:textSize="17sp"
-            android:layout_gravity="center"/>
+            android:textSize="17sp" />
+
 
     </LinearLayout>
 
