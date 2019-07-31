@@ -1,5 +1,7 @@
 package com.example.delish.View;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -9,16 +11,12 @@ import android.widget.FrameLayout;
 import android.util.Base64;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.delish.Payments.CheckoutActivity;
-import com.google.android.gms.wallet.PaymentsClient;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.example.delish.R;
 import com.example.delish.ViewModel.ShowDelishCamera;
 import com.example.delish.Models.RecipeAlgo;
 import com.example.delish.Models.CloudVision;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("Delish by NCR");
+//        getSupportActionBar().setTitle("Delish by NCR");
         //getSupportActionBar().set(Color.parseColor("#80000000"));
         takePictureButton = findViewById(R.id.take_picture_button);
         frameLayout = findViewById(R.id.camera_layout);
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
 //                Intent intent = new Intent(v.getContext(), CheckoutActivity.class);
 //                startActivity(intent);
-                Cart.BottomSheetDialogDetails bottomSheetDialogDetails = new Cart.BottomSheetDialogDetails();
+                BottomSheetDialogDetails bottomSheetDialogDetails = new BottomSheetDialogDetails();
                 bottomSheetDialogDetails.show(getSupportFragmentManager(), bottomSheetDialogDetails.getTag());
             }
         });
@@ -149,6 +147,18 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Failllllll");
                 return null;
             }
+
+        }
+    }
+
+    public static class BottomSheetDialogDetails extends BottomSheetDialogFragment {
+        @SuppressLint("RestrictedApi")
+        @Override
+        public void setupDialog(Dialog dialog, int style) {
+            super.setupDialog(dialog, style);
+            View contentView = View.inflate(getContext(), R.layout.bottom_sheet_dialog, null);
+
+            dialog.setContentView(contentView);
 
         }
     }
