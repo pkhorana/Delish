@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         showDelishCamera = new ShowDelishCamera(this, camera);
         frameLayout.addView(showDelishCamera);
-        takePictureButton.setEnabled(false);
+        takePictureButton.setEnabled(true);
 
         /*frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         public void onPictureTaken(byte[] data, Camera camera) {
             String base64 = processImage(data);
             new MyTask().execute(base64);
+
+
             RecipeAlgo.queryforRecipes();
 
 //            try {

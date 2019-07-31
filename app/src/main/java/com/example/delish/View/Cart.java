@@ -21,7 +21,7 @@ public class Cart extends AppCompatActivity implements CartAdapter.ItemClickList
     private float x1,x2; //USED IN SWIPE DETECTION
     static final int MIN_DISTANCE = 150; //USED IN SWIPE DETECTION
     CartAdapter adapter;
-    List<String> cart;
+    List<String> cart = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
