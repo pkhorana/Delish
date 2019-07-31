@@ -2,6 +2,7 @@
 
 <ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,7 +20,7 @@
             android:textColor="#000000"
             android:textSize="24dp"
             android:textStyle="bold" />
-
+        
         <View
             android:id="@+id/divider"
             android:layout_width="350dp"
@@ -27,6 +28,13 @@
             android:layout_marginBottom="@dimen/padding_small"
             android:layout_height="2dp"
             android:background="#CFCECE" />
+
+
+        <Button
+            android:id="@+id/cartButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to Cart" />
 
         <TextView
             android:id="@+id/nutrition_insights"
