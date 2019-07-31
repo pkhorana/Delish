@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Recipe Name" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="225dp"
+                android:layout_height="224dp"
+                app:srcCompat="@drawable/common_full_open_on_phone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cuisineType"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:text="Cuisine Type:"
+                    android:textAlignment="gravity" />
+
+                <TextView
+                    android:id="@+id/ratingText"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:text="Rating:"
+                    android:textAlignment="gravity" />
+
+                <TextView
+                    android:id="@+id/cookTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:text="Cook Time:"
+                    android:textAlignment="gravity" />
+
+                <TextView
+                    android:id="@+id/prepTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:text="Prep Time:"
+                    android:textAlignment="gravity" />
+
+                <TextView
+                    android:id="@+id/readyTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:text="Ready in:"
+                    android:textAlignment="gravity" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="488dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/ingredientList"
+                android:layout_width="match_parent"
+                android:layout_height="208dp"
+                android:text="Ingredients:" />
+
+            <TextView
+                android:id="@+id/directionsList"
+                android:layout_width="match_parent"
+                android:layout_height="131dp"
+                android:text="Directions:" />
+
+            <TextView
+                android:id="@+id/nutritionContent"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:text="Nutritional Content:" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
+

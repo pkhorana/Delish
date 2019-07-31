@@ -1,94 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeView">
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/star-3"
-        android:layout_width="32dp"
-        android:layout_height="35dp"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="99dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/star-4"
-        android:layout_width="32dp"
-        android:layout_height="35dp"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="99dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".RecipeView">
 
-    <ImageView
-        android:id="@+id/star-5"
-        android:layout_width="32dp"
-        android:layout_height="35dp"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="99dp" />
+            <ImageView
+                android:id="@+id/star-3"
+                android:layout_width="32dp"
+                android:layout_height="35dp"
+                app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background"
+                tools:layout_editor_absoluteX="80dp"
+                tools:layout_editor_absoluteY="99dp" />
 
-    <ImageView
-        android:id="@+id/star-2"
-        android:layout_width="32dp"
-        android:layout_height="35dp"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="99dp" />
+            <ImageView
+                android:id="@+id/star-4"
+                android:layout_width="32dp"
+                android:layout_height="35dp"
+                app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background"
+                tools:layout_editor_absoluteX="112dp"
+                tools:layout_editor_absoluteY="99dp" />
 
-    <ImageView
-        android:id="@+id/star-1"
-        android:layout_width="32dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background" />
+            <ImageView
+                android:id="@+id/star-5"
+                android:layout_width="32dp"
+                android:layout_height="35dp"
+                app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background"
+                tools:layout_editor_absoluteX="144dp"
+                tools:layout_editor_absoluteY="99dp" />
 
-    <TextView
-        android:id="@+id/recipe_name"
-        android:layout_width="368dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:autoText="false"
-        android:gravity="center_horizontal"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+            <ImageView
+                android:id="@+id/star-2"
+                android:layout_width="32dp"
+                android:layout_height="35dp"
+                app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background"
+                tools:layout_editor_absoluteX="48dp"
+                tools:layout_editor_absoluteY="99dp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="187dp"
-        android:layout_height="21dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="158dp" />
+            <ImageView
+                android:id="@+id/star-1"
+                android:layout_width="32dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.022"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.133"
+                app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="165dp"
-        android:layout_height="163dp"
-        tools:layout_editor_absoluteX="227dp"
-        tools:layout_editor_absoluteY="99dp"
-        tools:srcCompat="@tools:sample/avatars" />
+            <TextView
+                android:id="@+id/recipe_name"
+                android:layout_width="368dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:autoText="false"
+                android:gravity="center_horizontal"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.296"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.053" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="187dp"
+                android:layout_height="21dp"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="158dp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="165dp"
+                android:layout_height="163dp"
+                tools:layout_editor_absoluteX="227dp"
+                tools:layout_editor_absoluteY="99dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+
+</LinearLayout>

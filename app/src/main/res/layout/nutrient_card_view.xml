@@ -29,19 +29,20 @@
         <TextView
             android:id="@+id/text_insight1"
             android:layout_width="wrap_content"
-            android:layout_height="49dp"
+            android:layout_height="59dp"
             android:layout_marginTop="24dp"
-            android:maxLines="1"
-            android:text="This is a sentence that is supposed to give us in"
+            android:inputType="textMultiLine"
+
+            android:text="This is a sentence that is supposed to give us in "
             android:textColor="@android:color/black"
             android:textSize="17sp" />
 
         <TextView
             android:id="@+id/text_insight2"
-            android:layout_width="wrap_content"
+            android:layout_width="376dp"
             android:layout_height="69dp"
             android:layout_marginTop="12dp"
-            android:maxLines="1"
+
             android:text="This is a sentence that is supposed to give us in"
             android:textColor="@android:color/black"
             android:textSize="17sp" />
