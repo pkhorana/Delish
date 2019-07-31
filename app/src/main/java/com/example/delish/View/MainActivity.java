@@ -58,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // UNCOMMENT THE NEXT LINE TO MAKE THE API CALL
                 // captureImage(v);
-                Intent intent = new Intent(v.getContext(), CheckoutActivity.class);
-                startActivity(intent);
+
+//                Intent intent = new Intent(v.getContext(), CheckoutActivity.class);
+//                startActivity(intent);
                 Cart.BottomSheetDialogDetails bottomSheetDialogDetails = new Cart.BottomSheetDialogDetails();
                 bottomSheetDialogDetails.show(getSupportFragmentManager(), bottomSheetDialogDetails.getTag());
             }
