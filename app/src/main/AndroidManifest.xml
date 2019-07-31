@@ -17,13 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".PaymentsTest"
             android:label="@string/title_activity_payments_test"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SavedRec" />
-        <activity android:name=".Cart" />
-        <activity android:name=".Insights" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".View.SavedRec" />
+        <activity android:name=".View.Cart" />
+        <activity android:name=".View.Insights" />
+        <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
