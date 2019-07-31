@@ -34,7 +34,7 @@ public class Cart extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CartAdapter(this, cart);
-//        adapter.setClickListener(this);
+
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener((item) -> {

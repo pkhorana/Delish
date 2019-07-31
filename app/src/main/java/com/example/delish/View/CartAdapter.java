@@ -35,6 +35,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         String food = mData.get(position);
         holder.itemName.setText(food);
+        holder.itemPrice.setText("$" + "0.00");
     }
 
     // total number of rows
@@ -58,10 +59,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView itemName;
+        private TextView itemPrice;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            itemName = (TextView) itemView.findViewById(R.id.itemName);
+            itemName = itemView.findViewById(R.id.itemName);
+            itemPrice = itemView.findViewById(R.id.countText);
 
             itemView.setOnClickListener((view) -> {
                 int position = getAdapterPosition();
