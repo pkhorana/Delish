@@ -40,7 +40,7 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/googlepay_background"
+                android:src="@drawable/googlepay_button_background"
                 android:layout_marginRight="@dimen/padding_medium"/>
 
             <LinearLayout
