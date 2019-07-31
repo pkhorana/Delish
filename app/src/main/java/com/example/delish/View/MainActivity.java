@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         showDelishCamera = new ShowDelishCamera(this, camera);
         frameLayout.addView(showDelishCamera);
-//        takePictureButton.setEnabled(false);
+        takePictureButton.setEnabled(true);
 
         /*frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +78,8 @@ public class MainActivity extends AppCompatActivity {
             String base64 = processImage(data);
             new MyTask().execute(base64);
 
-//            RecipeAlgo.queryforRecipes();
 
-
+            RecipeAlgo.queryforRecipes();
 
 //            try {
 //                CloudVision.webDetectionResponse(base64);
@@ -91,37 +90,37 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event)
-//    {
-//        switch(event.getAction())
-//        {
-//            case MotionEvent.ACTION_DOWN:
-//                x1 = event.getX();
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                x2 = event.getX();
-//                float deltaX = x2 - x1;
-//                if (deltaX > MIN_DISTANCE)
-//                {
-//                    Toast.makeText(this, "left2right swipe", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(MainActivity.this, Cart.class));
-//                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-//                }
-//                else if ((-1 * deltaX) > MIN_DISTANCE)
-//                {
-//                    Toast.makeText(this, "r2l swipe", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(MainActivity.this, SavedRec.class));
-//                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                }
-//                else
-//                {
-//                    camera.autoFocus(autoFocusCallback);
-//                }
-//                break;
-//        }
-//        return super.onTouchEvent(event);
-//    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                float deltaX = x2 - x1;
+                if (deltaX > MIN_DISTANCE)
+                {
+                    Toast.makeText(this, "left2right swipe", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, Cart.class));
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                }
+                else if ((-1 * deltaX) > MIN_DISTANCE)
+                {
+                    Toast.makeText(this, "r2l swipe", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, SavedRec.class));
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                }
+                else
+                {
+                    camera.autoFocus(autoFocusCallback);
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
 
     public void captureImage(View v){
         if (camera != null) {

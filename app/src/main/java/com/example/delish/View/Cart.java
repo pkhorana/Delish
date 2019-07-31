@@ -1,5 +1,7 @@
 package com.example.delish.View;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -12,14 +14,39 @@ import android.widget.Toast;
 import com.example.delish.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cart extends AppCompatActivity {
     private float x1,x2; //USED IN SWIPE DETECTION
     static final int MIN_DISTANCE = 150; //USED IN SWIPE DETECTION
+    CartAdapter adapter;
+    private static List<String> cart = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        setContentView(R.layout.cart_holder_view);
+
+        cart.add("cheese");
+
+        // set up the RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new CartAdapter(this, cart);
+//        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener((item) -> {
+            Toast.makeText(this, "work", Toast.LENGTH_SHORT).show();
+        });
     }
+
+    public static void addToCart(String food) {
+        cart.add(food);
+    }
+
+
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
