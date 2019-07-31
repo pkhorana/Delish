@@ -15,7 +15,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     private List<String> mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private OnItemClickListener listener;
 
     // data is passed into the constructor
     public CartAdapter(Context context, List<String> data) {
@@ -55,15 +55,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         return mData.get(id);
     }
 
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView itemName;
@@ -72,6 +63,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             super(itemView);
             itemName = (TextView) itemView.findViewById(R.id.itemName);
 
+            itemView.setOnClickListener((view) -> {
+                int position = getAdapterPosition();
+
+                if(listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClicked(mData.get(position));
+                }
+            });
+
         }
     }
+
+    public interface OnItemClickListener{
+        void onItemClicked(String food);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {this.listener = listener;}
 }

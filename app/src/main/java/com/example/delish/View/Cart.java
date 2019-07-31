@@ -17,7 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart extends AppCompatActivity implements CartAdapter.ItemClickListener {
+public class Cart extends AppCompatActivity {
     private float x1,x2; //USED IN SWIPE DETECTION
     static final int MIN_DISTANCE = 150; //USED IN SWIPE DETECTION
     CartAdapter adapter;
@@ -34,14 +34,18 @@ public class Cart extends AppCompatActivity implements CartAdapter.ItemClickList
         RecyclerView recyclerView = findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CartAdapter(this, cart);
-        adapter.setClickListener(this);
+//        adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener((item) -> {
+            Toast.makeText(this, "work", Toast.LENGTH_SHORT).show();
+        });
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+    public static void addToCart(String food) {
+        cart.add(food);
     }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event)
