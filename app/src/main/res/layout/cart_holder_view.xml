@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
         android:text="MARKET"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -40,18 +41,11 @@
             tools:listitem="@layout/buy_item_view" />
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/buy_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/buyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 
 </LinearLayout>
