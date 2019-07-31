@@ -38,7 +38,15 @@ public class Cart extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener((item) -> {
-            Toast.makeText(this, "work", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(Cart.this, MainActivity.class);
+
+            Bundle bundle = new Bundle();
+            bundle.putString("FoodName", item);
+            intent.putExtras(bundle);
+
+            startActivity(intent);
+
         });
     }
 
