@@ -15,7 +15,7 @@ import java.net.URLEncoder;
 import java.util.Map;
 
 public class NutritionInsights {
-    public static final String NUTRITIONURL = "http://DelishAppNCR.pythonanywhere.com/nutrition_facts";
+    public static final String NUTRITIONURL = "https://DelishAppNCR.pythonanywhere.com/nutrition_facts";
     private NutritionValue servingSize;
     private NutritionValue calories;
     private Map<String, NutritionValue> nutrition;

@@ -39,7 +39,7 @@ public class Cart extends AppCompatActivity {
 
         adapter.setOnItemClickListener((item) -> {
 
-            Intent intent = new Intent(Cart.this, MainActivity.class);
+            Intent intent = new Intent(Cart.this, NutritionActivity.class);
 
             Bundle bundle = new Bundle();
             bundle.putString("FoodName", item);

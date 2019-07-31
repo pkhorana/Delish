@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -32,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new
+                    StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 //        getSupportActionBar().setTitle("Delish by NCR");
         //getSupportActionBar().set(Color.parseColor("#80000000"));
         takePictureButton = findViewById(R.id.take_picture_button);
