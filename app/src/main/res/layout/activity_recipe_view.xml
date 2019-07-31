@@ -67,7 +67,7 @@
                 app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background" />
 
             <TextView
-                android:id="@+id/recipe_name"
+                android:id="@+id/recipe_name1"
                 android:layout_width="368dp"
                 android:layout_height="44dp"
                 android:layout_marginStart="8dp"
