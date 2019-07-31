@@ -49,6 +49,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/cusisineType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimary"
@@ -58,6 +59,7 @@
                     android:textStyle="bold"/>
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/calories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFDD00"
@@ -83,6 +85,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/prepTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -91,6 +94,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/cookTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

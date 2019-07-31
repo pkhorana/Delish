@@ -21,7 +21,7 @@
 
 
         <TextView
-            android:id="@+id/text_insight1"
+            android:id="@+id/nutrient_insight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="This is a sentence that is supposed to give us in "
