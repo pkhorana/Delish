@@ -43,14 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
         showDelishCamera = new ShowDelishCamera(this, camera);
         frameLayout.addView(showDelishCamera);
+        takePictureButton.setEnabled(false);
 
-        frameLayout.setOnClickListener(new View.OnClickListener() {
+        /*frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePictureButton.setEnabled(false);
-                camera.autoFocus(autoFocusCallback);
+
+
             }
-        });
+        });*/
 
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "r2l swipe", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, SavedRec.class));
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                }
+                else
+                {
+                    camera.autoFocus(autoFocusCallback);
                 }
                 break;
         }
