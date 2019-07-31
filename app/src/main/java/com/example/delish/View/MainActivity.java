@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.delish.Payments.CheckoutActivity;
 import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.example.delish.R;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // UNCOMMENT THE NEXT LINE TO MAKE THE API CALL
                 // captureImage(v);
+                Intent intent = new Intent(v.getContext(), CheckoutActivity.class);
+                startActivity(intent);
                 Cart.BottomSheetDialogDetails bottomSheetDialogDetails = new Cart.BottomSheetDialogDetails();
                 bottomSheetDialogDetails.show(getSupportFragmentManager(), bottomSheetDialogDetails.getTag());
             }

@@ -19,6 +19,7 @@
         <activity android:name=".View.SavedRec" />
         <activity android:name=".View.Cart" />
         <activity android:name=".View.Insights" />
+        <activity android:name=".Payments.CheckoutActivity"/>
         <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
