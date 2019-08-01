@@ -98,7 +98,7 @@
 
 
             <TextView
-                android:id="@+id/nutrient_insight"
+                android:id="@+id/nutrient_insight2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Each serving contains 5g of fat"
@@ -157,9 +157,9 @@
 
                     <ImageView
                         android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="100dp"
                         android:scaleType="centerCrop"
-                        android:src=""
+                        android:src="@drawable/cm"
                         android:layout_marginRight="@dimen/padding_medium"/>
 
                     <LinearLayout
@@ -173,7 +173,7 @@
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/colorPrimary"
                             android:layout_gravity="center"
-                            android:text="Italian"
+                            android:text="Indian"
                             android:textColor="#ffffff"
                             android:textStyle="bold"/>
 
@@ -183,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:backgroundTint="#FFDD00"
                             android:layout_gravity="center"
-                            android:text="400 cal"
+                            android:text="832 cal"
                             android:textColor="#ffffff"
                             android:textStyle="bold"/>
 
@@ -207,7 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="20 min"
+                            android:text="3 hrs"
                             android:padding="2dp"
                             android:textStyle="bold"/>
 
@@ -266,7 +266,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:paddingBottom="@dimen/padding_small"
-                    android:text="Recipe Name"
+                    android:text="Chicken Pot Pie"
                     android:textColor="#000000"
                     android:textStyle="bold"/>
 
@@ -277,9 +277,9 @@
 
                     <ImageView
                         android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="100dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/googlepay_button_background"
+                        android:src="@drawable/potpie"
                         android:layout_marginRight="@dimen/padding_medium"/>
 
                     <LinearLayout
@@ -288,7 +288,7 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.chip.Chip
-                            android:id="@+id/cusisineType2"
+                            android:id="@+id/Indian"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/colorPrimary"
@@ -386,7 +386,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:paddingBottom="@dimen/padding_small"
-                    android:text="Recipe Name"
+                    android:text="Chicken Marsala"
                     android:textColor="#000000"
                     android:textStyle="bold"/>
 
@@ -397,9 +397,9 @@
 
                     <ImageView
                         android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="100dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/googlepay_button_background"
+                        android:src="@drawable/b"
                         android:layout_marginRight="@dimen/padding_medium"/>
 
                     <LinearLayout
