@@ -23,7 +23,7 @@ public class RecipeAlgo {
 
 
     public static void queryforRecipes() {
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Recipe");
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Recipes");
         List<String> ingredients = new ArrayList<>();
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -1,27 +1,27 @@
+from pyvirtualdisplay import Display
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
 import json
 
-def save_to_file(json_dictionary):
-    # index = 0
-    # while path.exists("demoRecipe" + str(index) + ".txt"):
-    #     index = index + 1
-
-    f = open("nutrition.txt", "w")
-    f.write(json.dumps(json_dictionary))
-    f.close()
+soup = ""
 
 def get_serving():
+    global soup
+    
     serving = soup.select('span[itemprop="servingSize"]')
     for n in serving:
         return n.text.split()[0]
 
 def get_calories():
+    global soup
+    
     calories = soup.select('div > span[itemprop="calories"]')[0]
     return calories.string.strip()
 
 def get_nutrition_facts():
+    global soup
+    
     nutrition_type = []
     nutrition_amt = []
     dic = {}
@@ -38,6 +38,8 @@ def get_nutrition_facts():
 
 
 def get_workout():
+    global soup
+    
     work_activity = []
     work_time = []
     dic = {}
@@ -56,14 +58,24 @@ def get_workout():
         dic[work_activity[i]] = work_time[i]
     return dic
 
-def scrape():
-    browser = webdriver.Chrome()  # Optional argument, if not specified will search path.
-    browser.get('https://www.nutritionix.com/food/milk');
+def scrape(item):
+    global soup
+    
+    #display = Display(visible=0, size=(800, 600))
+    #display.start()
+    
+    browser = webdriver.Firefox()  # Optional argument, if not specified will search path.
+    browser.get('https://www.nutritionix.com/food/' + item);
 
     time.sleep(1)
 
     html = browser.page_source
+    
+    browser.quit()
+    #display.stop()
+    
     soup = BeautifulSoup(html, 'html.parser')
+    browser.quit()
 
     json_dictionary = {}
     json_dictionary["serving_size"] = get_serving();
@@ -71,7 +83,8 @@ def scrape():
     json_dictionary["nutrition"] = get_nutrition_facts()
     json_dictionary["activity"]= get_workout()
 
-    save_to_file(json_dictionary)
+    return json.dumps(json_dictionary)
 
-    browser.quit()
 
+if __name__ == '__main__':
+    print(scrape("chicken"))
