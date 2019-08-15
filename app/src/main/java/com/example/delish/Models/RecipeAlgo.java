@@ -24,37 +24,67 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.CountDownLatch;
 
 public class RecipeAlgo {
 
     public static String cameraItem;
+    public static boolean bool =false;
 
-    public static Map<String,DataSnapshot> recipeMatches = new HashMap<String,DataSnapshot>();
+    public static List<DataSnapshot> recipeMatches = new ArrayList<DataSnapshot>();
+    public static List<String> cuisineList = new ArrayList<String>();
+    public static CountDownLatch done = new CountDownLatch(1);
+    public static List<String> itemList = new ArrayList<String>();
+    public static final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Recipes");
 
+    public static void queryforRecipes(MyCallback myCallback) {
 
-    public static void queryforRecipes() {
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Recipes");
-        List<String> ingredients = new ArrayList<>();
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<DataSnapshot> matches = new ArrayList<DataSnapshot> ();
                 for(DataSnapshot cuisines : dataSnapshot.getChildren()){
                     String cuisine = cuisines.getKey();
-                    for(DataSnapshot recipes : cuisines.getChildren()){
-                        for(DataSnapshot ingredients : recipes.child("ingredients").getChildren()){
-                            String ingredient = ((String)ingredients.child("name").getValue()).toLowerCase();
-                            if(ingredient.contains(cameraItem)){
-                                recipeMatches.put(cuisine,recipes);
+                    for(DataSnapshot recipe : cuisines.getChildren()){
+                        for(DataSnapshot ingredient : recipe.child("ingredients").getChildren()){
+                            String ingred = (String)ingredient.child("name").getValue();
+                            String lower = "something";
+                            if (ingred != null) {
+                                lower = ingred.toLowerCase();
+                            }
+//                            itemList.add(ingred);
+                            if(lower.contains("chicken")){
+                                matches.add(recipe);
+                                if (cuisine.equals("American Cuisines")) {
+                                    cuisineList.add("American");
+                                } else {
+                                    cuisineList.add(cuisine);
+                                }
                             }
 
                         }
                     }
                 }
+                recipeMatches = matches;
+                myCallback.onCallback(matches);
+
+
+
+
+
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
+
+    }
+
+    public interface MyCallback {
+        void onCallback(List<DataSnapshot> list);
     }
 
     public static void setItem(String item){
