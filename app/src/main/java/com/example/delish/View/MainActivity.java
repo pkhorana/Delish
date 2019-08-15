@@ -139,6 +139,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+//    @Override
+//    public void onWindowFocusChanged (boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        frameLayout = findViewById(R.id.camera_layout);
+////
+//       camera = Camera.open();
+////
+////        showDelishCamera = new ShowDelishCamera(this, camera);
+//        frameLayout.addView(showDelishCamera);
+//    }
+
     Camera.AutoFocusCallback autoFocusCallback = new Camera.AutoFocusCallback() {
         @Override
         public void onAutoFocus(boolean arg0, Camera arg1) {
@@ -184,22 +195,12 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
+
 
             BottomSheetDialogDetails bottomSheetDialogDetails = new BottomSheetDialogDetails();
             bottomSheetDialogDetails.show(getSupportFragmentManager(), bottomSheetDialogDetails.getTag());
-
-
-
-
-
-
-
-
-
-
-
-
+            camera.startPreview();
+            
 //            MaterialCardView recipe2 = findViewById(R.id.recipe_2);
 //            MaterialCardView recipe3 = findViewById(R.id.recipe_3);
         }
