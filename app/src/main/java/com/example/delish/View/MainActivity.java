@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.hardware.Camera;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.delish.Models.MyCallback;
 import com.example.delish.R;
 import com.example.delish.ViewModel.ShowDelishCamera;
 import com.example.delish.Models.RecipeAlgo;
@@ -45,7 +48,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import android.os.Handler;
 
+
+import static com.example.delish.Models.RecipeAlgo.cuisineList;
 import static com.example.delish.Models.RecipeAlgo.recipeMatches;
 
 
@@ -56,11 +62,15 @@ public class MainActivity extends AppCompatActivity {
     ShowDelishCamera showDelishCamera;
     private float x1,x2; //USED IN SWIPE DETECTION
     static final int MIN_DISTANCE = 150; //USED IN SWIPE DETECTION
+    public static List<DataSnapshot> recipes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         setContentView(R.layout.activity_main);
+
+
 //        getSupportActionBar().setTitle("Delish by NCR");
         //getSupportActionBar().set(Color.parseColor("#80000000"));
         takePictureButton = findViewById(R.id.take_picture_button);
@@ -87,8 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
 //                Intent intent = new Intent(v.getContext(), CheckoutActivity.class);
 //                startActivity(intent);
-                BottomSheetDialogDetails bottomSheetDialogDetails = new BottomSheetDialogDetails();
-                bottomSheetDialogDetails.show(getSupportFragmentManager(), bottomSheetDialogDetails.getTag());
+
+
+
+
             }
         });
     }
@@ -132,117 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void queryandview(String resp) {
         try{
-            JSONArray recipes = new JSONArray(resp);
 
-
-
-            JSONObject recipe = recipes.getJSONObject(0);
-            String name = recipe.getString("name");
-            String imageUrl = recipe.getString("image_URL");
-            String cookTime = recipe.getString("cook_time");
-            String prep_time = recipe.getString("prep_time");
-            String cuisine = recipe.getString("tags").trim();
-//            JSONObject nutritionalContent = recipe.getJSONObject("nutritional_content");
-//            JSONObject caloriesObj = nutritionalContent.getJSONObject("calories");
-//            String cal = caloriesObj.getString("amount");
-
-            setContentView(R.layout.bottom_sheet_dialog);
-            MaterialCardView recipe1 = findViewById(R.id.recipe_1);
-//            TextView recipe_name = recipe1.findViewById(R.id.recipe_name1);
-//            ImageView imageView = (ImageView) recipe1.findViewById(R.id.imageView);
-            TextView cus = recipe1.findViewById(R.id.cusisineType1);
-            TextView calories = recipe1.findViewById(R.id.calories1);
-            TextView prepTime = (TextView)recipe1.findViewById(R.id.prepTime1);
-            TextView cookTimeView = (TextView)recipe1.findViewById(R.id.cookTime1);
-
-
-//            recipe_name.setText(name);
-//            Picasso.get().load(imageUrl).into(imageView);
-            cus.setText(cuisine);
-//            calories.setText(cal);
-            prepTime.setText(prep_time);
-            cookTimeView.setText(cookTime);
-
-
-
-
-
-
-            JSONObject recipeT = recipes.getJSONObject(1);
-            String name2 = recipeT.getString("name");
-            String imageUrl2 = recipeT.getString("image_URL");
-            String cookTime2 = recipeT.getString("cook_time");
-            String prep_time2 = recipeT.getString("prep_time");
-            String cuisine2 = recipeT.getString("tags").trim();
-//            JSONObject nutritionalContent2 = recipeT.getJSONObject("nutritional_content");
-//            JSONObject caloriesObj2 = nutritionalContent2.getJSONObject("calories");
-//            String cal2 = caloriesObj2.getString("amount");
-
-
-            MaterialCardView recipe2 = findViewById(R.id.recipe_2);
-            TextView recipe_name2 = recipe2.findViewById(R.id.recipe_name1);
-            ImageView imageView2 = (ImageView) recipe1.findViewById(R.id.imageView);
-            TextView cus2 = recipe1.findViewById(R.id.cusisineType);
-            TextView calories2 = recipe1.findViewById(R.id.calories);
-            TextView prepTime2 = (TextView)recipe1.findViewById(R.id.prepTime1);
-            TextView cookTimeView2 = (TextView)recipe1.findViewById(R.id.cookTime1);
-
-
-            recipe_name2.setText(name2);
-            Picasso.get().load(imageUrl2).into(imageView2);
-            cus2.setText(cuisine2);
-//            calories2.setText(cal2);
-            prepTime2.setText(prep_time2);
-            cookTimeView2.setText(cookTime2);
-
-
-
-            JSONObject recipeZ = recipes.getJSONObject(1);
-            String name3 = recipeZ.getString("name");
-            String imageUrl3 = recipeZ.getString("image_URL");
-            String cookTime3 = recipeZ.getString("cook_time");
-            String prep_time3 = recipeZ.getString("prep_time");
-            String cuisine3 = recipeZ.getString("tags").trim();
-//            JSONObject nutritionalContent3 = recipeZ.getJSONObject("nutritional_content");
-//            JSONObject caloriesObj3 = nutritionalContent3.getJSONObject("calories");
-//            String cal3 = caloriesObj3.getString("amount");
-
-
-            MaterialCardView recipe3 = findViewById(R.id.recipe_3);
-            TextView recipe_name3 = recipe3.findViewById(R.id.recipe_name1);
-            ImageView imageView3 = (ImageView) recipe3.findViewById(R.id.imageView);
-            TextView cus3 = recipe3.findViewById(R.id.cusisineType);
-            TextView calories3 = recipe3.findViewById(R.id.calories);
-            TextView prepTime3 = (TextView)recipe3.findViewById(R.id.prepTime1);
-            TextView cookTimeView3 = (TextView)recipe3.findViewById(R.id.cookTime1);
-
-
-            recipe_name3.setText(name3);
-            Picasso.get().load(imageUrl3).into(imageView3);
-            cus3.setText(cuisine3);
-//            calories3.setText(cal3);
-            prepTime3.setText(prep_time3);
-            cookTimeView3.setText(cookTime3);
-
-//            JSONArray arr = json.getJSONArray("responses");
-//            JSONObject obj = arr.getJSONObject(0);
-//            JSONObject obj2 = obj.getJSONObject("webDetection");
-//            JSONArray arr2 = obj2.getJSONArray("webEntities");
-
-//            MaterialCardView recipe1 = findViewById(R.id.recipe_1);
-//            TextView recipe_name = recipe1.findViewById(R.id.recipe_name1);
-//            recipe_name.setText((String)(key1.child("name:").getValue()));
-//            ImageView imageView = (ImageView) findViewById(R.id.imageView);
-//            String imageUrl = (String)(key1.child("image_URL:").getValue());
-//            Picasso.get().load(imageUrl).into(imageView);
-//            TextView cus = recipe1.findViewById(R.id.cusisineType);
-//            cus.setText((String)(recipeMatches.get(key1)));
-//            TextView calories = recipe1.findViewById(R.id.calories);
-//            calories.setText((String)(key1.child("nurtitional_content").child("calories").child("amount").getValue()));
-//            TextView prepTime = (TextView)recipe1.findViewById(R.id.prepTime1);
-//            prepTime.setText((String)(key1.child("prep_time:").getValue()));
-//            TextView cookTime = (TextView)recipe1.findViewById(R.id.cookTime1);
-//            cookTime.setText((String)(key1.child("cook_time:").getValue()));
         }
         catch(Exception e){
 
@@ -263,6 +165,51 @@ public class MainActivity extends AppCompatActivity {
             String base64 = processImage(data);
             new MyTask().execute(base64);
 
+            final Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        sleep(1000);
+                        recipes =  RecipeAlgo.recipeMatches;
+                        System.out.println("wait");
+                        return;
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+
+//                        finish();
+                    }
+                }
+            };
+
+            thread.start();
+            try {
+                Thread.sleep(1000);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+//                        ImageView imageView = (ImageView) recipe1.findViewById(R.id.imageView);
+//                        TextView cus = recipe1.findViewById(R.id.cusisineType1);
+//                        TextView calories = recipe1.findViewById(R.id.calories1);
+//                        TextView prepTime = (TextView)recipe1.findViewById(R.id.prepTime1);
+//                        TextView cookTimeView = (TextView)recipe1.findViewById(R.id.cookTime1);
+//
+//
+
+            BottomSheetDialogDetails bottomSheetDialogDetails = new BottomSheetDialogDetails();
+            bottomSheetDialogDetails.show(getSupportFragmentManager(), bottomSheetDialogDetails.getTag());
+
+
+
+
+
+
+
+
 
 
 
@@ -273,26 +220,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void fixThisIssue(Map<DataSnapshot, String> recipeMatches) {
-        List<DataSnapshot> keysAsArray = new ArrayList<DataSnapshot>(recipeMatches.keySet());
-        Random r = new Random();
-        DataSnapshot key1 = keysAsArray.get(r.nextInt(keysAsArray.size()));
-        MaterialCardView recipe1 = findViewById(R.id.recipe_1);
-        TextView recipe_name = recipe1.findViewById(R.id.recipe_name1);
-        recipe_name.setText((String)(key1.child("name:").getValue()));
-        ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        String imageUrl = (String)(key1.child("image_URL:").getValue());
-        Picasso.get().load(imageUrl).into(imageView);
-        TextView cus = recipe1.findViewById(R.id.cusisineType);
-        cus.setText((String)(recipeMatches.get(key1)));
-        TextView calories = recipe1.findViewById(R.id.calories);
-        calories.setText((String)(key1.child("nurtitional_content").child("calories").child("amount").getValue()));
-        TextView prepTime = (TextView)recipe1.findViewById(R.id.prepTime1);
-        prepTime.setText((String)(key1.child("prep_time:").getValue()));
-        TextView cookTime = (TextView)recipe1.findViewById(R.id.cookTime1);
-        cookTime.setText((String)(key1.child("cook_time:").getValue()));
 
-        MaterialCardView recipe2 = findViewById(R.id.recipe_2);
-        MaterialCardView recipe3 = findViewById(R.id.recipe_3);
     }
 
     @Override
@@ -350,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
                 String response = makeRequest("chicken");
                 queryandview(response);
                 System.out.println("Works!!");
-
+                RecipeAlgo.queryforRecipes();
                 return resp;
 
             } catch (Exception e) {
@@ -368,7 +296,73 @@ public class MainActivity extends AppCompatActivity {
             super.setupDialog(dialog, style);
             View contentView = View.inflate(getContext(), R.layout.bottom_sheet_dialog, null);
 
+            int[] arr = new int[3];
+            int i = 0;
+            int rand= 0;
+            while (i < 3) {
+                rand = (int)(Math.random()*recipes.size());
+                arr[i] = rand;
+                i++;
+            }
+
             dialog.setContentView(contentView);
+            MaterialCardView recipe1 = contentView.findViewById(R.id.recipe_1);
+            TextView recipe_name1 = recipe1.findViewById(R.id.recipe_name1);
+            TextView cus1 = recipe1.findViewById(R.id.cusisineType1);
+            TextView calories1 = recipe1.findViewById(R.id.calories1);
+            TextView prepTime1 = (TextView)recipe1.findViewById(R.id.prepTime1);
+            TextView cookTimeView1 = (TextView)recipe1.findViewById(R.id.cookTime1);
+            ImageView imageView1 = (ImageView) recipe1.findViewById(R.id.imageView1);
+
+            int first = arr[0];
+            recipe_name1.setText((String)recipes.get(first).child("name").getValue());
+            cus1.setText(cuisineList.get(first));
+            calories1.setText((String)recipes.get(first).child("nurtitional_content").
+                    child("calories").child("amount").getValue() + " cal");
+            prepTime1.setText((String)recipes.get(first).child("prep_time").getValue());
+            cookTimeView1.setText((String)recipes.get(first).child("cook_time").getValue());
+            Picasso.get().load((String)recipes.get(first).child("image_URL").getValue()).into(imageView1);
+
+            System.out.println("efd");
+
+
+            MaterialCardView recipe2 = contentView.findViewById(R.id.recipe_2);
+            TextView recipe_name2 = recipe2.findViewById(R.id.recipe_name2);
+            TextView cus2 = recipe2.findViewById(R.id.cusisineType2);
+            TextView calories2 = recipe2.findViewById(R.id.calories2);
+            TextView prepTime2 = (TextView)recipe2.findViewById(R.id.prepTime2);
+            TextView cookTimeView2 = (TextView)recipe2.findViewById(R.id.cookTime2);
+            ImageView imageView2 = (ImageView) recipe2.findViewById(R.id.imageView2);
+
+            int sec = arr[1];
+            recipe_name2.setText((String)recipes.get(sec).child("name").getValue());
+            cus2.setText(cuisineList.get(sec));
+            calories2.setText((String)recipes.get(sec).child("nurtitional_content").
+                    child("calories").child("amount").getValue() + " cal");
+            prepTime2.setText((String)recipes.get(sec).child("prep_time").getValue());
+            cookTimeView2.setText((String)recipes.get(sec).child("cook_time").getValue());
+            Picasso.get().load((String)recipes.get(sec).child("image_URL").getValue()).into(imageView2);
+            System.out.println("efd");
+
+
+
+
+            MaterialCardView recipe3 = contentView.findViewById(R.id.recipe_3);
+            TextView recipe_name3 = recipe3.findViewById(R.id.recipe_name3);
+            TextView cus3 = recipe3.findViewById(R.id.cusisineType3);
+            TextView calories3 = recipe3.findViewById(R.id.calories3);
+            TextView prepTime3 = (TextView)recipe3.findViewById(R.id.prepTime3);
+            TextView cookTimeView3 = (TextView)recipe3.findViewById(R.id.cookTime3);
+            ImageView imageView3 = (ImageView) recipe3.findViewById(R.id.imageView3);
+
+            int third = arr[2];
+            recipe_name3.setText((String)recipes.get(third).child("name").getValue());
+            cus3.setText(cuisineList.get(third));
+            calories3.setText((String)recipes.get(third).child("nurtitional_content").
+                    child("calories").child("amount").getValue() + " cal");
+            prepTime3.setText((String)recipes.get(third).child("prep_time").getValue());
+            cookTimeView3.setText((String)recipes.get(third).child("cook_time").getValue());
+            Picasso.get().load((String)recipes.get(third).child("image_URL").getValue()).into(imageView3);
 
         }
     }
