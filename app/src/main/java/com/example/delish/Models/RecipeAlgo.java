@@ -37,13 +37,13 @@ public class RecipeAlgo {
     public static List<String> itemList = new ArrayList<String>();
     public static final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Recipes");
 
-    public static void queryforRecipes() {
-
+    public static void queryforRecipes(MyCallback myCallback) {
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                List<DataSnapshot> matches = new ArrayList<DataSnapshot> ();
                 for(DataSnapshot cuisines : dataSnapshot.getChildren()){
                     String cuisine = cuisines.getKey();
                     for(DataSnapshot recipe : cuisines.getChildren()){
@@ -55,7 +55,7 @@ public class RecipeAlgo {
                             }
 //                            itemList.add(ingred);
                             if(lower.contains("chicken")){
-                                recipeMatches.add(recipe);
+                                matches.add(recipe);
                                 if (cuisine.equals("American Cuisines")) {
                                     cuisineList.add("American");
                                 } else {
@@ -66,8 +66,10 @@ public class RecipeAlgo {
                         }
                     }
                 }
-                String val = "done";
-                bool = true;
+                recipeMatches = matches;
+                myCallback.onCallback(matches);
+
+
 
 
 
@@ -79,6 +81,10 @@ public class RecipeAlgo {
         });
 
 
+    }
+
+    public interface MyCallback {
+        void onCallback(List<DataSnapshot> list);
     }
 
     public static void setItem(String item){

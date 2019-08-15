@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.hardware.Camera;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -16,28 +15,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.delish.Models.MyCallback;
 import com.example.delish.R;
 import com.example.delish.ViewModel.ShowDelishCamera;
 import com.example.delish.Models.RecipeAlgo;
 import com.example.delish.Models.CloudVision;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -47,8 +36,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import android.os.Handler;
 
 
 import static com.example.delish.Models.RecipeAlgo.cuisineList;
@@ -164,41 +151,40 @@ public class MainActivity extends AppCompatActivity {
         public void onPictureTaken(byte[] data, Camera camera) {
             String base64 = processImage(data);
             new MyTask().execute(base64);
-
-            final Thread thread = new Thread() {
+            RecipeAlgo.queryforRecipes(new RecipeAlgo.MyCallback() {
                 @Override
-                public void run() {
-                    try {
-                        sleep(1000);
-                        recipes =  RecipeAlgo.recipeMatches;
-                        System.out.println("wait");
-                        return;
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-
-//                        finish();
-                    }
+                public void onCallback(List<DataSnapshot> list) {
+                    recipes = list;
                 }
-            };
-
-            thread.start();
+            });
+            //recipes = RecipeAlgo.recipeMatches;
+//            final Thread thread = new Thread() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        sleep(1000);
+//                        recipes =  RecipeAlgo.recipeMatches;
+//                        System.out.println("wait");
+//                        return;
+//
+//
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    } finally {
+//
+////                        finish();
+//                    }
+//                }
+//            };
+//
+//            thread.start();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(200);
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-//                        ImageView imageView = (ImageView) recipe1.findViewById(R.id.imageView);
-//                        TextView cus = recipe1.findViewById(R.id.cusisineType1);
-//                        TextView calories = recipe1.findViewById(R.id.calories1);
-//                        TextView prepTime = (TextView)recipe1.findViewById(R.id.prepTime1);
-//                        TextView cookTimeView = (TextView)recipe1.findViewById(R.id.cookTime1);
-//
-//
+            
 
             BottomSheetDialogDetails bottomSheetDialogDetails = new BottomSheetDialogDetails();
             bottomSheetDialogDetails.show(getSupportFragmentManager(), bottomSheetDialogDetails.getTag());
@@ -278,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 String response = makeRequest("chicken");
                 queryandview(response);
                 System.out.println("Works!!");
-                RecipeAlgo.queryforRecipes();
+                //RecipeAlgo.queryforRecipes();
                 return resp;
 
             } catch (Exception e) {
@@ -297,12 +283,22 @@ public class MainActivity extends AppCompatActivity {
             View contentView = View.inflate(getContext(), R.layout.bottom_sheet_dialog, null);
 
             int[] arr = new int[3];
+            boolean same = false;
             int i = 0;
             int rand= 0;
             while (i < 3) {
                 rand = (int)(Math.random()*recipes.size());
                 arr[i] = rand;
+                int check = i - 1;
+                while (check > -1 && same == false) {
+                    if (arr[i] == arr[check]) {
+                        i--;
+                        same = true;
+                    }
+                    check--;
+                }
                 i++;
+
             }
 
             dialog.setContentView(contentView);
